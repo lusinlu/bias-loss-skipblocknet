@@ -8,17 +8,12 @@ from skipnet import skipnet
 
 torch.backends.cudnn.benchmark = True
 
-parser = argparse.ArgumentParser(description='PyTorch ImageNet Validation')
-parser.add_argument('--data', metavar='DIR',
-                    help='path to dataset')
-parser.add_argument('--batch_size', default=256, type=int,
-                    metavar='N', help='mini-batch size (default: 256)')
-parser.add_argument('--num_classes', type=int, default=1000,
-                    help='Number classes in dataset')
-parser.add_argument('--log_freq', default=10, type=int,
-                    metavar='N', help='batch logging frequency (default: 10)')
-parser.add_argument('--checkpoint', default='skipnet-m_76.2.pth', type=str, metavar='PATH',
-                    help='path to latest checkpoint (default: none)'))
+parser = argparse.ArgumentParser(description='SkipNet ImageNet Validation')
+parser.add_argument('--data', type=str, help='path to dataset')
+parser.add_argument('--batch_size', default=256, type=int, help='mini-batch size')
+parser.add_argument('--num_classes', type=int, default=1000, help='Number classes in dataset')
+parser.add_argument('--log_freq', default=10, type=int, help='batch logging frequency (default: 10)')
+parser.add_argument('--checkpoint', default='skipnet-m_76.2.pth', type=str, help='path to latest checkpoint ')
 
 
 def validate(args):
