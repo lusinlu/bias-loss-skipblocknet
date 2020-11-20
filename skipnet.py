@@ -176,10 +176,8 @@ class SkipNet(nn.Module):
 
         # inverted residual blocks
         self.blocks = nn.ModuleList([])
-        features = None
+        features = []
         for k, t, output_channel, use_se, use_hs, s, make_block in self.cfgs:
-            if features == None:
-                features = []
             output_channel = _make_divisible(output_channel * width_mult, 8)
             exp_size = _make_divisible(input_channel * t, 8)
             features.append(block_inv(input_channel, exp_size, output_channel, k, s, use_se, use_hs))
@@ -187,7 +185,7 @@ class SkipNet(nn.Module):
 
             if make_block:
                 self.blocks.append(nn.Sequential(*features))
-                features = None
+                features = []
 
         # skip blocks
         skip1_cfg = cfgs_skip[0]

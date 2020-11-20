@@ -2,8 +2,7 @@ import torch
 import torchvision.datasets as datasets
 import torchvision.transforms as transforms
 import math
-import logging
-import logging.handlers
+
 
 
 def load_checkpoint(model, checkpoint_path, strict=True):
