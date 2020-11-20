@@ -235,7 +235,7 @@ class SkipNet(nn.Module):
         x = self.avgpool(x_features)
         x = x.view(x.size(0), -1)
         x = self.classifier(x)
-        return x, x_features
+        return x
 
     def _initialize_weights(self):
         for m in self.modules():

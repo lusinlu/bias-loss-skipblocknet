@@ -9,16 +9,19 @@ from skipnet import skipnet
 torch.backends.cudnn.benchmark = True
 
 parser = argparse.ArgumentParser(description='SkipNet ImageNet Validation')
-parser.add_argument('--data', type=str, help='path to dataset')
+parser.add_argument('--data', required=True, type=str, help='path to ImageNet validation set')
 parser.add_argument('--batch_size', default=256, type=int, help='mini-batch size')
 parser.add_argument('--num_classes', type=int, default=1000, help='Number classes in dataset')
-parser.add_argument('--log_freq', default=10, type=int, help='batch logging frequency (default: 10)')
+parser.add_argument('--log_freq', default=10, type=int, help='batch logging frequency')
 parser.add_argument('--checkpoint', default='skipnet-m_76.2.pth', type=str, help='path to latest checkpoint ')
 
 
 def validate(args):
 
-    model = skipnet(num_classes=args.num_classes).cuda()
+    model = skipnet(num_classes=args.num_classes)
+
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    model = model.to(device)
 
     load_checkpoint(model, args.checkpoint)
 
@@ -35,11 +38,11 @@ def validate(args):
     with torch.no_grad():
 
         for i, (input, target) in enumerate(loader):
-            target = target.cuda()
-            input = input.cuda()
+            target = target.to(device)
+            input = input.to(device)
 
             # compute output
-            output, _ = model(input)
+            output = model(input)
 
             # measure and record accuracies
             acc1, acc5 = accuracy(output.data, target, topk=(1, 5))
