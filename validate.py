@@ -17,8 +17,8 @@ parser.add_argument('--num_classes', type=int, default=1000,
                     help='Number classes in dataset')
 parser.add_argument('--log_freq', default=10, type=int,
                     metavar='N', help='batch logging frequency (default: 10)')
-parser.add_argument('--checkpoint', default='', type=str, metavar='PATH',
-                    help='path to latest checkpoint (default: none)')
+parser.add_argument('--checkpoint', default='skipnet-m_76.2.pth', type=str, metavar='PATH',
+                    help='path to latest checkpoint (default: none)'))
 
 
 def validate(args):
