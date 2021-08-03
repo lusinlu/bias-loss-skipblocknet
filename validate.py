@@ -13,7 +13,7 @@ parser.add_argument('--data', required=True, type=str, help='path to ImageNet va
 parser.add_argument('--batch_size', default=256, type=int, help='mini-batch size')
 parser.add_argument('--num_classes', type=int, default=1000, help='Number classes in dataset')
 parser.add_argument('--log_freq', default=10, type=int, help='batch logging frequency')
-parser.add_argument('--checkpoint', default='skipnet-m_76.2.pth', type=str, help='path to latest checkpoint ')
+parser.add_argument('--checkpoint', default='skipnet-m.pth', type=str, help='path to the checkpoint ')
 
 
 def validate(args):

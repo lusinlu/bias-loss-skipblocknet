@@ -6,7 +6,7 @@ for installing required packages run
 ` pip install -r requirements.txt`
 
 ## Usage
-Pretrained models are available from [Google Drive](https://drive.google.com/drive/folders/1G3UR8wtTFB8S-9Fp6sRtfn9Vtfb6XcTU?usp=sharing).
+Pretrained models are available from [Google Drive](https://drive.google.com/drive/folders/1G3UR8wtTFB8S-9Fp6sRtfn9Vtfb6XcTU?usp=sharing). For the testing please download and place them in the same directory as the validation script (currently testing available only for skipnet-m, code will be updated).
 
 `python validate.py --data path/to/the/dataset`
 
