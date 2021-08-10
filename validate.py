@@ -4,7 +4,7 @@ import torch
 from collections import OrderedDict
 from utils import load_checkpoint, accuracy, AverageMeter, data_loader
 
-from skipnet import skipnet
+from skipblocknet import skipblocknet
 
 torch.backends.cudnn.benchmark = True
 
@@ -13,12 +13,12 @@ parser.add_argument('--data', required=True, type=str, help='path to ImageNet va
 parser.add_argument('--batch_size', default=256, type=int, help='mini-batch size')
 parser.add_argument('--num_classes', type=int, default=1000, help='Number classes in dataset')
 parser.add_argument('--log_freq', default=10, type=int, help='batch logging frequency')
-parser.add_argument('--checkpoint', default='skipnet-m.pth', type=str, help='path to the checkpoint ')
+parser.add_argument('--checkpoint', default='skipblocknet-m.pth', type=str, help='path to the checkpoint ')
 
 
 def validate(args):
 
-    model = skipnet(num_classes=args.num_classes)
+    model = skipblocknet(num_classes=args.num_classes)
 
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     model = model.to(device)

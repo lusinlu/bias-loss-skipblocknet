@@ -150,12 +150,12 @@ class SkipBlock(nn.Module):
             return self.core_block(x)
 
 
-class SkipNet(nn.Module):
+class SkipblockNet(nn.Module):
     """
-    SkipNet model introduced in "Bias Loss for Mobile Neural Networks"
+    SkipblockNet model introduced in "Bias Loss for Mobile Neural Networks"
     """
     def __init__(self, cfgs,cfgs_skip,num_classes, mode,  width_mult=1.):
-        super(SkipNet, self).__init__()
+        super(SkipblockNet, self).__init__()
 
         # configurations of inverted residual and skip blocks
         self.cfgs = cfgs
@@ -253,9 +253,9 @@ class SkipNet(nn.Module):
                 m.bias.data.zero_()
 
 
-def skipnet(num_classes, mode='large', width=1.0):
+def skipblocknet(num_classes, mode='large', width=1.0):
     """
-    Constructs a SkipNet model,with
+    Constructs a SkipblockNet model,with
      cfgs - default configurations for the inverted residual blocks
      cfgs_skip - default configurations for the skip blocks
     """
@@ -284,4 +284,4 @@ def skipnet(num_classes, mode='large', width=1.0):
         [16, 6, 40, 5, 1, 28],
         [16, 2.3, 80, 3, 1, 14]
     ]
-    return SkipNet(cfgs, cfgs_skip, num_classes, mode=mode, width_mult=width)
+    return SkipblockNet(cfgs, cfgs_skip, num_classes, mode=mode, width_mult=width)
