@@ -24,7 +24,7 @@ To train the models run the training script in the bias loss directory as follow
 
 By Lusine Abrahamyan, Valentin Ziatchin, Yiming Chen and Nikos Deligiannis.
 ### Approach (SkipblockNet)
-<img src="https://github.com/lusinlu/skipnet_evaluation/blob/main/figures/architecture.png" width="500" height="500">
+<img src="https://github.com/lusinlu/skipnet_evaluation/blob/main/figures/architecture.png" width="300" height="300">
 
 ### Performance (SkipblockNet)
 SkipNet beats other SOTA lightweight CNNs such as MobileNetV3 and FBNet.
