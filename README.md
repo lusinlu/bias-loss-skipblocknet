@@ -48,7 +48,8 @@ Bellow is the results of the pretrained models that can be found in the [Google 
 ## Citation
 If you find the code useful for your research, please consider citing our works
 
-```@article{abrahamyanbias,
+```
+@article{abrahamyanbias,
   author    = {Lusine Abrahamyan and
                Valentin Ziatchin and
                Yiming Chen and
