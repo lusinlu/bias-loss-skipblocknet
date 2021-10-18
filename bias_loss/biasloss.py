@@ -1,36 +1,46 @@
 from torch import nn
 import torch
 
-GLOBAL_MIN = 100000
-
 
 class BiasLoss(nn.Module):
-    def __init__(self, alpha=0.3, beta=0.3):
+    def __init__(self, alpha=0.3, beta=0.3, normalisation_mode='global'):
         super(BiasLoss, self).__init__()
         self.alpha = alpha
         self.beta = beta
         self.ce = nn.CrossEntropyLoss(reduction='none')
+        self.norm_mode = normalisation_mode
+        self.global_min = 100000
 
-
-    def normalise(self, tensor):
+    def norm_global(self, tensor):
         min = tensor.clone().min()
-
         max = tensor.clone().max()
-        global GLOBAL_MIN
-        if min < GLOBAL_MIN:
-            GLOBAL_MIN = min
-        normalised = ((tensor - GLOBAL_MIN) / (max - min))
+
+        if min < self.global_min:
+            self.global_min = min
+        normalised = ((tensor - self.global_min) / (max - min))
+        return normalised
+
+    def norm_local(self, tensor):
+        min = tensor.clone().min()
+        max = tensor.clone().max()
+
+        normalised = ((tensor - min) / (max - min))
+
         return normalised
 
     def forward(self, features, output, target):
         features_copy = features.clone().detach()
-        features_per_sample = features_copy.reshape(features_copy.shape[0], -1)
+        features_dp = features_copy.reshape(features_copy.shape[0], -1)
 
-        variance_per_sample = (torch.var(features_per_sample, dim=1))
-        variance_per_sample_normalised = self.normalise(variance_per_sample)
+        features_dp = (torch.var(features_dp, dim=1))
+        if self.norm_mode == 'global':
+            variance_dp_normalised = self.norm_global(features_dp)
+        else:
+            variance_dp_normalised = self.norm_local(features_dp)
 
-        weights = ((torch.exp(variance_per_sample_normalised * self.beta) - 1.) / 1.) + self.alpha
+        weights = ((torch.exp(variance_dp_normalised * self.beta) - 1.) / 1.) + self.alpha
         loss = weights * self.ce(output, target)
+
         loss = loss.mean()
 
         return loss

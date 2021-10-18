@@ -25,8 +25,9 @@ parser.add_argument('--batch_size', default=128, type=int, help='batch size')
 parser.add_argument('--chkp_dir', default='./checkpoint', type=str, help='checkpoints directory')
 parser.add_argument('--accuracies_dir', default='./accuracies', type=str, help='accuracies directory')
 parser.add_argument('--milestones', default=[80, 122], type=int, nargs='+', help='milestones/epochs on which change lr')
-parser.add_argument('--device', default=1, type=int, help='device id of GPU')
+parser.add_argument('--device', default=0, type=int, help='device id of GPU')
 parser.add_argument('--model', default='resnet18', type=str, help='training model, options - resnet18, densenet121, shufflenetv2')
+parser.add_argument('--norm_mode', default='global', type=str, help='mode for normalisation of the variance. Options: local, global')
 
 
 args = parser.parse_args()
@@ -44,7 +45,7 @@ def run():
     train_set, test_set = dataset_cifar100(batch_size=args.batch_size, data_path=args.data_path)
     accuracies, accuracies_train = np.zeros(args.epochs), np.zeros(args.epochs)
 
-    criterion = BiasLoss()
+    criterion = BiasLoss(normalisation_mode=args.norm_mode)
     if args.model == 'resnet18':
         model = resnet18(num_classes=args.classes).to(args.device)
     elif args.model == 'densenet121':
