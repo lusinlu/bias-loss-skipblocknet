@@ -1,5 +1,8 @@
 # Bias Loss & SkipblockNet
-[ICCV 2021]Demo for the bias loss and SkipblockNet architecture presented in the [paper](https://arxiv.org/pdf/2107.11170.pdf) "Bias Loss for Mobile Neural Networks".
+[![report](https://img.shields.io/badge/arxiv-report-red)](https://arxiv.org/pdf/2107.11170.pdf)
+[![PWC](https://img.shields.io/badge/PWC-report-blue)](https://paperswithcode.com/paper/bias-loss-for-mobile-neural-networks)
+
+[ICCV 2021]Demo for the bias loss and SkipblockNet architecture presented in the [paper](https://openaccess.thecvf.com/content/ICCV2021/papers/Abrahamyan_Bias_Loss_for_Mobile_Neural_Networks_ICCV_2021_paper.pdf) "Bias Loss for Mobile Neural Networks".
 
 ## Requirements
 for installing required packages run
