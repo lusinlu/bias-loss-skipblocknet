@@ -52,11 +52,11 @@ Bellow is the results of the pretrained models that can be found in the [Google 
 If you find the code useful for your research, please consider citing our works
 
 ```
-@article{abrahamyanbias,
+@inproceedings{abrahamyan2021bias,
   title={Bias Loss for Mobile Neural Networks},
-  author={Lusine, Abrahamyan and  Valentin, Ziatchin and Yiming, Chen and Nikos, Deligiannis},
-  journal={Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
-  publisher = {IEEE},
+  author={Abrahamyan, Lusine and Ziatchin, Valentin and Chen, Yiming and Deligiannis, Nikos},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={6556--6566},
   year={2021}
 }
 ```
