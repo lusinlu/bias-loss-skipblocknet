@@ -38,7 +38,7 @@ class BiasLoss(nn.Module):
         else:
             variance_dp_normalised = self.norm_local(features_dp)
 
-        weights = ((torch.exp(variance_dp_normalised * self.beta) - 1.) / 1.) + self.alpha
+        weights = torch.exp(variance_dp_normalised * self.alpha) -  self.beta
         loss = weights * self.ce(output, target)
 
         loss = loss.mean()
